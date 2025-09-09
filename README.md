@@ -8,11 +8,13 @@ alphabet. **Table [1](#tab:rm){reference-type="ref"
 reference="tab:rm"}** shows the value of the different letters that
 make up our \"alphabet\".
 
-::: {#tab:rm}
-    **Symbol**  `I`   `V`   `X`   `L`   `C`   `D`   `M`
-  ------------ ----- ----- ----- ----- ----- ----- ------
-     **Value**   1     5    10    50    100   500   1000
-:::
+<div id="tab:rm" markdown="1">
+
+    | **Symbol** | `I` | `V` | `X` | `L` | `C` | `D` | `M`  |
+    |-----------:|:---:|:---:|:---:|:---:|:---:|:---:|:----:|
+    |  **Value** |  1  |  5  | 10  | 50  | 100 | 500 | 1000 |
+
+    </div>
 
 For the numerals 4 (`IV`) and 9 (`IX`) are written using
 \"subtractive notation\", where the first symbol is subtracted from
