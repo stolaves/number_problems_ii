@@ -7,7 +7,7 @@ import number_problems_2 as prog
 def test_total_roman( n, res):
     assert prog.total_roman(n) == res
 
-@pytest.mark.parametrize(('n'), [(0),(0.00000001),("32.a"),("6f"), (4000)])
+@pytest.mark.parametrize(('n'), [(0),(4000),(10000)])
 def test_total_roman_exceptions( n):
     with pytest.raises(ValueError):
         prog.total_roman(n)

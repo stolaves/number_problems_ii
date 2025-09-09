@@ -1,0 +1,79 @@
+name: Autograding Number Problems 2
+'on':
+- workflow_dispatch
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Testing Roman Numerals
+      id: testing-roman-numerals
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Testing Roman Numerals
+        setup-command: sudo -H pip3 install pytest
+        command: python3 -m pytest test/test_01_roman_numerals.py
+        timeout: 1
+        max-score: 5
+    - name: Testing Total Roman
+      id: testing-total-roman
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Testing Total Roman
+        setup-command: sudo -H pip3 install pytest
+        command: python3 -m pytest test/test_02_total_roman.py
+        timeout: 1
+        max-score: 5
+    - name: Testing Chisel Strokes
+      id: testing-chisel-strokes
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Testing Chisel Strokes
+        setup-command: sudo -H pip3 install pytest
+        command: python3 -m pytest test/test_03_chisel_strokes.py
+        timeout: 1
+        max-score: 5
+    - name: Testing Describe
+      id: testing-describe
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Testing Describe
+        setup-command: sudo -H pip3 install pytest
+        command: python3 -m pytest test/test_04_describe.py
+        timeout: 1
+        max-score: 5
+    - name: Testing Binary Without Zeros
+      id: testing-binary-without-zeros
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Testing Binary Without Zeros
+        setup-command: sudo -H pip3 install pytest
+        command: python3 -m pytest test/test_05_binary_without_zeros.py
+        timeout: 1
+        max-score: 5
+    - name: Checking Code Quality
+      id: checking-code-quality
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Checking Code Quality
+        setup-command: sudo -H pip3 install pylint
+        command: python3 -m pylint --disable=C0116,C0103,W0611 number_problems_1.py
+        timeout: 2
+        max-score: 5
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TESTING-ROMAN-NUMERALS_RESULTS: '"${{steps.testing-roman-numerals.outputs.result}}"'
+        TESTING-TOTAL-ROMAN_RESULTS: '"${{steps.testing-total-roman.outputs.result}}"'
+        TESTING-CHISEL-STROKES_RESULTS: '"${{steps.testing-chisel-strokes.outputs.result}}"'
+        TESTING-DESCRIBE_RESULTS: '"${{steps.testing-describe.outputs.result}}"'
+        TESTING-BINARY-WITHOUT-ZEROS_RESULTS: '"${{steps.testing-binary-without-zeros.outputs.result}}"'
+      with:
+        runners: testing-roman-numerals,testing-total-roman,testing-chisel-strokes,testing-describe,testing-binary-without-zeros

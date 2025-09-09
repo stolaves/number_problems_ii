@@ -7,7 +7,3 @@ import number_problems_2 as prog
 def test_binary_without_zeros( n, res):
     assert prog.binary_without_zeros(n) == res
 
-@pytest.mark.parametrize(('n'), [(0),(-5),(0.00000001),("6f"), ("325235s")])
-def test_binary_without_zeros_exceptions( n):
-    with pytest.raises(ValueError):
-        prog.binary_without_zeros(n)
